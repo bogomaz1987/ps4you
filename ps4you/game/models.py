@@ -30,7 +30,7 @@ class Game(models.Model):
     ps_id = models.CharField(verbose_name=_('Уникальный идентификатор'), max_length=300, db_index=True)
     release_date = models.DateField(verbose_name=_('Дата рализа'), db_index=True, null=True)
     genres = models.ManyToManyField(verbose_name=_('Жанр игры'), to=Genre, db_index=True)
-    content_type = models.ForeignKey(verbose_name=_('Тип игры'), to=GameContentType, null=True)
+    content_type = models.ForeignKey(verbose_name=_('Тип игры'), to=GameContentType, null=True, on_delete=models.CASCADE)
     platforms = models.ManyToManyField(verbose_name=_('Платформы'), to=Platform, db_index=True)
     rating_score = models.FloatField(verbose_name=_('Рейтинг'), db_index=True, default=0, null=True)
     rating_people = models.IntegerField(verbose_name=_('Людей проголосовало'), db_index=True, default=0, null=True)
@@ -53,7 +53,7 @@ class Game(models.Model):
 
 
 class Price(models.Model):
-    game = models.ForeignKey('game.Game', verbose_name=_('Игра'))
+    game = models.ForeignKey('game.Game', verbose_name=_('Игра'), on_delete=models.CASCADE)
     price_plus_user = models.IntegerField(verbose_name=_('Цена для ps plus'), db_index=True, null=True)
     price_non_plus_user = models.IntegerField(verbose_name=_('Цена для всех'), db_index=True, null=True)
     date = models.DateField(verbose_name=_('Дата сохранения цены'), auto_now_add=True, db_index=True)

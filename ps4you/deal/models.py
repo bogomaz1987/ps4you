@@ -5,8 +5,8 @@ from django.utils.translation import gettext as _
 
 
 class Exchange(models.Model):
-    game = models.ForeignKey('game.Game')
-    client = models.ForeignKey('client.Client')
+    game = models.ForeignKey('game.Game', on_delete=models.CASCADE)
+    client = models.ForeignKey('client.Client', on_delete=models.CASCADE)
     exchange_games = models.ManyToManyField('game.Game', related_name='game')
 
     class Meta:
@@ -15,8 +15,8 @@ class Exchange(models.Model):
 
 
 class Sale(models.Model):
-    game = models.ForeignKey('game.Game')
-    client = models.ForeignKey('client.Client')
+    game = models.ForeignKey('game.Game', on_delete=models.CASCADE)
+    client = models.ForeignKey('client.Client', on_delete=models.CASCADE)
     price = models.IntegerField(verbose_name=_('Цена продажи'))
 
     class Meta:
@@ -25,8 +25,8 @@ class Sale(models.Model):
 
 
 class Buy(models.Model):
-    game = models.ForeignKey('game.Game')
-    client = models.ForeignKey('client.Client')
+    game = models.ForeignKey('game.Game', on_delete=models.CASCADE)
+    client = models.ForeignKey('client.Client', on_delete=models.CASCADE)
     price = models.IntegerField(verbose_name=_('Цена продажи'))
 
     class Meta:

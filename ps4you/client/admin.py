@@ -1,10 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+
 from client.models import Client
 
-
-class ClientAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Client, ClientAdmin)
-
+admin.site.register(Client, UserAdmin)
