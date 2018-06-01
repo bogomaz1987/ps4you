@@ -32,6 +32,7 @@ class Game(models.Model):
     genres = models.ManyToManyField(verbose_name=_('Жанр игры'), to=Genre, db_index=True)
     content_type = models.ForeignKey(verbose_name=_('Тип игры'), to=GameContentType, null=True, on_delete=models.CASCADE)
     platforms = models.ManyToManyField(verbose_name=_('Платформы'), to=Platform, db_index=True)
+    description = models.CharField(verbose_name=_('Описание'), max_length=1000, blank=True)
     rating_score = models.FloatField(verbose_name=_('Рейтинг'), db_index=True, default=0, null=True)
     rating_people = models.IntegerField(verbose_name=_('Людей проголосовало'), db_index=True, default=0, null=True)
     page = models.CharField(verbose_name=_('Страница игры в ps store'), max_length=300)

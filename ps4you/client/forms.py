@@ -33,3 +33,8 @@ class PhonePassword(forms.Form):
 #                 and self.cleaned_data['password'] == self.cleaned_data['confirm_password']:
 #             return cleaned_data
 #         raise ValidationError(_('Password and Confirm password not the same'), code='invalid')
+
+class RegistrationClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['username', 'email']

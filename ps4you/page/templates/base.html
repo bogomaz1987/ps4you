@@ -1,0 +1,24 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block header %}
+    <a href="{% url 'mainpage' %}">{% trans "mainpage" %}</a>
+    <a href="{% url 'registration_client' %}">{% trans "registration client" %}</a>
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,9 +1,12 @@
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.urls import path
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^client/', include('client.urls')),
-    url('^searchableselect/', include('searchableselect.urls')),
+    path('admin/', admin.site.urls),
 
+    path('searchableselect/', include('searchableselect.urls')),
+
+    path('', include('page.urls')),
+    path('client/', include('client.urls')),
 ]

@@ -34,6 +34,7 @@ class Command(BaseCommand):
 
                     ps_genres = i['genres']  # жанр
                     ps_content_type = i['game-content-type']  # тип игры
+                    ps_description = i['long-description']
                     ps_platforms = i['platforms']
                     ps_name = i['name']
                     ps_release_date = datetime.datetime.strptime(i['release-date'], '%Y-%m-%dT%H:%M:%SZ').date()
@@ -84,6 +85,7 @@ class Command(BaseCommand):
                     game.genres.add(*genres)
                     game.content_type_id = content_type.id
                     game.platforms.add(*platforms)
+                    game.description = ps_description
                     # game.price_non_plus_user = ps_price_non_plus_user
                     # game.price_plus_user = ps_price_plus_user
                     game.rating_score = ps_rating_score
