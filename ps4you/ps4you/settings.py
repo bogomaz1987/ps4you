@@ -25,7 +25,7 @@ SECRET_KEY = '#l9n5o&07fg9=lx%jk3cx)(-i+b%ekzr&l_5hwtmvfhp&crhgj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.ngrok.io']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'formtools',
     'searchableselect',
+    'social_django',
 
     # custom libs
     'game',
@@ -132,10 +133,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")]
 
 AUTH_USER_MODEL = 'user.User'
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.instagram.InstagramOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_REDIRECT_URL = '/client/profile/'
+
+SOCIAL_AUTH_TELEGRAM_BOT_TOKEN = '489374823:AAE4r_zW_j4xrPEdIvRcT6BJKAjcN3mDxnk'
+SOCIAL_AUTH_VK_OAUTH2_KEY = '6624427'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'lPOjsNb7xpFWy9bPiVd7'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']

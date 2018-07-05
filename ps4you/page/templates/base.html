@@ -3,22 +3,35 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic/dist/semantic.min.css'%}">
+
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>Title</title>
+    {% endblock %}
 </head>
+
 <body>
 
-{% block header %}
-    <a href="{% url 'mainpage' %}">{% trans "mainpage" %}</a>
-    <a href="{% url 'registration_client' %}">{% trans "registration client" %}</a>
-{% endblock %}
+    {% block header %}
+        <a href="{% url 'mainpage' %}">{% trans "mainpage" %}</a>
+        <a href="{% url 'registration_client' %}">{% trans "registration client" %}</a>
+    {% endblock %}
 
-{% block body %}
-{% endblock %}
+    {% block body %}
+    {% endblock %}
 
-{% block footer %}
-{% endblock %}
+    {% block footer %}
+    {% endblock %}
 
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="{%  static 'semantic/dist/semantic.min.js' %}"></script>
 </body>
+
 </html>

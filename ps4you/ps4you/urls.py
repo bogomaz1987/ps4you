@@ -9,4 +9,6 @@ urlpatterns = [
 
     path('', include('page.urls')),
     path('client/', include('client.urls')),
+
+    path('auth/', include('social_django.urls', namespace='social'))
 ]
