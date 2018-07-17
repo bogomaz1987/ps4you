@@ -5,8 +5,8 @@
 <html lang="en">
 
 <head>
-    <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="{% static 'semantic/dist/semantic.min.css'%}">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic/dist/semantic.min.css' %}">
 
     {% block head %}
         <meta charset="UTF-8">
@@ -15,23 +15,30 @@
 </head>
 
 <body>
+{% block header %}
+    <div class="ui secondary pointing menu">
+        <a class="item {% if request.resolver_match.url_name == "home" %}active{% endif %}"
+           href="{% url "home" %}">Home</a>
+        <a class="item {% if request.resolver_match.url_name == "registration_client" %}active{% endif %}"
+           href="{% url "registration_client" %}">registration</a>
+        <div class="right menu">
+            <a class="ui item">Logout</a>
+        </div>
+    </div>
+{% endblock %}
 
-    {% block header %}
-        <a href="{% url 'mainpage' %}">{% trans "mainpage" %}</a>
-        <a href="{% url 'registration_client' %}">{% trans "registration client" %}</a>
-    {% endblock %}
+{% block body %}
+{% endblock %}
 
-    {% block body %}
-    {% endblock %}
+{% block footer %}
+{% endblock %}
 
-    {% block footer %}
-    {% endblock %}
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="{% static 'semantic/dist/semantic.min.js' %}"></script>
 
-    <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-    <script src="{%  static 'semantic/dist/semantic.min.js' %}"></script>
 </body>
 
 </html>

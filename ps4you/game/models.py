@@ -54,7 +54,7 @@ class Game(models.Model):
 
 
 class Price(models.Model):
-    game = models.ForeignKey('game.Game', verbose_name=_('Игра'), on_delete=models.CASCADE)
+    game = models.ForeignKey('game.Game', verbose_name=_('Игра'), on_delete=models.CASCADE, related_name='price')
     price_plus_user = models.IntegerField(verbose_name=_('Цена для ps plus'), db_index=True, null=True)
     price_non_plus_user = models.IntegerField(verbose_name=_('Цена для всех'), db_index=True, null=True)
     date = models.DateField(verbose_name=_('Дата сохранения цены'), auto_now_add=True, db_index=True)

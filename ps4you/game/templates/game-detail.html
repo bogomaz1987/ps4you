@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="description">
+        <p>{{ object.name }}</p>
+        <p>{{ object.content_type }}</p>
+        <p>Жанры: {{ object.genres.all | unordered_list }}</p>
+        <p>Рейтинг: {{ object.rating_score }} (Голосов: {{ object.rating_people }})</p>
+        <p>Дата выхода: {{ instance.release_date }}</p>
+        <a href="{{ object.page }}">PS Store</a>
+        <p>{{ object.description | safe }}</p>
+
+        <div class="content">
+            <div id="curve_chart{{ object.pk }}" style="width: 500px; height: 200px"></div>
+        </div>
+    </div>
+
+    {% for i in object.price.all %}
+        ['{{ i.date | date:'d.m.Y' }}', {{ i.price_plus_user }}]
+    {% endfor %}
+
+    {% if object.price.all %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['date', 'PSN', 'no PSN'],
+                {% for i in object.price.all %}
+                    ['{{ i.date | date:'d.m.Y' }}', {{ i.price_plus_user }}, {{ i.price_non_plus_user }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Company Performance',
+                curveType: 'function',
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart{{ object.pk }}'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    {% endif %}
+{% endblock %}
